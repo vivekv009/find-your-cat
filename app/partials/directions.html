@@ -1,0 +1,11 @@
+            
+            <h4>
+                <h3>Your cats could be lying here (we use a grid system to navigate!): <br/>
+                  <p> &nbsp </p>
+                  <p> &nbsp </p>
+                  <span ng-repeat="direction in directions track by $index">
+                     {{ direction }} <img ng-hide="$last" class="arrow" src="img/forward.png"></img>    
+                  </span>              		
+                </h3>
+            </h4>
+            <a ng-href="#/search" class="btn btn-primary">Send a Search party?</a>

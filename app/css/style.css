@@ -1,0 +1,20 @@
+img.my_logo { 
+position: absolute; 
+top: 12px; 
+left: 24px;
+height: 200px;
+width: 300px; 
+}
+
+.top-margin {
+ margin-top: 300px;
+}
+
+img.arrow { 
+height: 20px;
+width: 30px; 
+}
+
+a.btn-primary {
+ margin-top: 50px;	
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app="forensicsAPI">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+        <script src="js/app.js"></script>
+        <title>Your Cat Map</title>
+    </head>
+    <body ng-controller="DirectionsCtrl">
+    <img class="my_logo" src="img/which_logo.jpg"></img> <br/>
+	<div class="container top-margin">
+	    <div class="row vertical-center-row">
+	        <div class="col-lg-12"> 
+              <img src="img/cat.jpg"></img> <br/>
+		      <div ng-view ></div>
+              
+		    </div>
+	    </div>
+	</div> 
+       
+    </body>
+</html>
