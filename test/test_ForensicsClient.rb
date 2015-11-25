@@ -6,8 +6,10 @@ require_relative "../lib/ForensicsAPI/ForensicsClient"
 
 module ForensicsAPI
 	class ForensicsClientSpec < Minitest::Spec
-		let(:directions) {["forward","right","forward","forward","forward","left","forward","forward","left","right","forward","right","forward","forward","right","forward","forward","left"]}
 
+
+        let(:directions)  {["forward","right","forward","forward","forward","left","forward","forward","left","right","forward","right","forward","forward","right","forward","forward","left"]}
+		
         it 'returns 5 and 2 as x and y co-ordinates' do 
            client = ForensicsAPI::ForensicsClient.new
            client.locate_with_directions(directions)
@@ -40,7 +42,5 @@ module ForensicsAPI
            assert_equal(0, client.x)
            assert_equal(0, client.y)
         end
-        
-
 	end	
 end	
