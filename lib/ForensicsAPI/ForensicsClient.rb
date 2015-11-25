@@ -15,9 +15,11 @@ module ForensicsAPI
 		@facing = :north
 	  end
 
-	  def locate_with_directions(directions)
+
+      def locate_with_directions(directions)
         directions.each { |d| (d =~ /forward/) ? move : turn(d) }
       end
+
 
 
 
