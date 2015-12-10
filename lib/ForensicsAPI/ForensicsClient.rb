@@ -21,7 +21,7 @@ module ForensicsAPI
 	  class << self
 
 	     def follow_directions(directions, grid)
-	  	     directions.each {|d| (d =~ /forward/) ? move(grid) : turn(grid, d)} if directions
+	  	 directions.each {|d| (d =~ /forward/) ? move(grid) : turn(grid, d)} if directions
 	     end	
     
 
@@ -45,7 +45,7 @@ module ForensicsAPI
 
 
 	     def move(grid)
-		   case grid.facing
+		     case grid.facing
 		       when :north
 		         grid.y += 1
 		       when :south
@@ -54,7 +54,7 @@ module ForensicsAPI
 		         grid.x += 1
 		       when :west
 		         grid.x -= 1 
-		  end
+		    end
 	    end	
 	    
          end
