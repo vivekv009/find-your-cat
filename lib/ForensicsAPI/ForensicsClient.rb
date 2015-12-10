@@ -1,12 +1,12 @@
 module ForensicsAPI
 
-	class CoOrdinates
+    class CoOrdinates
       	attr_accessor :x, :y, :facing
 
-	    def initialize
-		    @x, @y = 0, 0
-		    @facing = :north
-	    end
+	def initialize
+	    @x, @y = 0, 0
+	    @facing = :north
+	end
     end
 
 
@@ -45,7 +45,7 @@ module ForensicsAPI
 
 
 	     def move(grid)
-		     case grid.facing
+		   case grid.facing
 		       when :north
 		         grid.y += 1
 		       when :south
@@ -54,9 +54,9 @@ module ForensicsAPI
 		         grid.x += 1
 		       when :west
 		         grid.x -= 1 
-		       end
-	         end	
+		  end
+	    end	
+	    
          end
-
       end   
 end    
