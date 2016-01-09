@@ -1,62 +1,81 @@
 module ForensicsAPI
 
-    class CoOrdinates
-      	attr_accessor :x, :y, :facing
+    class GridSystem
+      	attr_accessor :x, :y
 
-	def initialize
-	    @x, @y = 0, 0
-	    @facing = :north
-	end
-    end
+      	def initialize
+      		@x, @y = 0, 0
+      	end	
 
-
-    class PositioningClient
-      	
-	  # Directions while turning
-	  FACING_NORTH = {:left => :west, :right => :east}
-	  FACING_SOUTH = {:left => :east, :right => :west}
-	  FACING_EAST  = {:left => :north, :right => :south}
-	  FACING_WEST  = {:left => :south, :right => :north}
-
-	  class << self
-
-	     def follow_directions(directions, grid)
-	  	 directions.each {|d| (d =~ /forward/) ? move(grid) : turn(grid, d)} if directions
-	     end	
-    
-
-
-	     private
-
-	     def turn(grid, side)
-	     	 side = side.to_sym
-
-		     case grid.facing
+	    def move(facing)
+	    	case facing
 		       when :north
-		         grid.facing = FACING_NORTH[side]
+		         @y += 1
 		       when :south
-		         grid.facing = FACING_SOUTH[side]
+		         @y -= 1 
 		       when :east
-		         grid.facing = FACING_EAST[side]
+		         @x += 1
 		       when :west
-		         grid.facing = FACING_WEST[side]
-		     end       	
-	     end	
-
-
-	     def move(grid)
-		     case grid.facing
-		       when :north
-		         grid.y += 1
-		       when :south
-		         grid.y -= 1 
-		       when :east
-		         grid.x += 1
-		       when :west
-		         grid.x -= 1 
+		         @x -= 1 
 		    end
 	    end	
-	    
-         end
-      end   
+    end
+
+    class Compass
+
+    	# Directions while turning
+	    FACING_NORTH = {:left => :west, :right => :east}
+	    FACING_SOUTH = {:left => :east, :right => :west}
+	    FACING_EAST  = {:left => :north, :right => :south}
+	    FACING_WEST  = {:left => :south, :right => :north}
+
+    	attr_accessor :facing
+
+    	def initialize
+    		@facing = :north
+    	end	
+
+    	def turn(turn)
+	     	 side = turn.to_sym
+
+		     case @facing
+		       when :north
+		         @facing = FACING_NORTH[side]
+		       when :south
+		         @facing = FACING_SOUTH[side]
+		       when :east
+		         @facing = FACING_EAST[side]
+		       when :west
+		         @facing = FACING_WEST[side]
+		     end       	
+	    end	
+    end		
+
+
+    class CatLocator
+
+    	 attr_accessor :grid, :compass
+
+    	 def initialize
+    	 	 @grid = GridSystem.new
+	     	 @compass = Compass.new
+	     end 	 
+  
+
+	     def get_location(directions)
+	     	 directions.each {|d| (d =~ /forward/) ? grid.move(facing) : compass.turn(d)} if directions
+	     end	
+
+	     def x
+	     	grid.x
+	     end
+	     
+	     def y
+	        grid.y
+	     end
+	     
+	     def facing
+	        compass.facing
+	     end       	
+    end  
 end    

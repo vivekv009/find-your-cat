@@ -35,10 +35,10 @@ module ForensicsAPI
     end	
 
     get '/search' do
-    	grid = CoOrdinates.new
-    	PositioningClient.follow_directions(session[:directions], grid)
+    	locator = ForensicsAPI::CatLocator.new
+    	locator.get_location(session[:directions])
 
-    	location_url = "http://which-technical-exercise.herokuapp.com/api/#{session[:email]}/location/#{grid.x}/#{grid.y}" if grid
+    	location_url = "http://which-technical-exercise.herokuapp.com/api/#{session[:email]}/location/#{locator.x}/#{locator.y}" if locator
 
     	content_type :json
       open(location_url).read  
