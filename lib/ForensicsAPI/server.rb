@@ -14,9 +14,12 @@ require 'open-uri'
 
 
 
+# Subclassed Sinatra base class with few routes
 module ForensicsAPI
   class Server < Sinatra::Base
 
+
+    #Sinatra session enabled
     configure do
       enable :sessions
     end    	

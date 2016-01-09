@@ -1,12 +1,16 @@
 module ForensicsAPI
 
+
+    # A model of Cartesian Co-Ordinate System which can tell 2D position
+    # with the assumption of every movement leading to unit displacement
     class GridSystem
       	attr_accessor :x, :y
 
       	def initialize
       		@x, @y = 0, 0
       	end	
-
+        
+        # Based on facing direction, new movement along X or Y axis will be tracked
 	    def move(facing)
 	    	case facing
 		       when :north
@@ -21,10 +25,11 @@ module ForensicsAPI
 	    end	
     end
 
+    # A simplistic compass which can point to N - North, E - East, W - West and S - South directions
     class Compass
 
-    	# Directions while turning
-	    FACING_NORTH = {:left => :west, :right => :east}
+    	# Assuming if you were to face one of the above directions, turning L - Left or R - Right will give new direction
+    	FACING_NORTH = {:left => :west, :right => :east}
 	    FACING_SOUTH = {:left => :east, :right => :west}
 	    FACING_EAST  = {:left => :north, :right => :south}
 	    FACING_WEST  = {:left => :south, :right => :north}
@@ -35,6 +40,8 @@ module ForensicsAPI
     		@facing = :north
     	end	
 
+
+        # Based on facing direction, turning will lead to new direction 
     	def turn(turn)
 	     	 side = turn.to_sym
 
@@ -61,19 +68,23 @@ module ForensicsAPI
 	     	 @compass = Compass.new
 	     end 	 
   
-
+         # Passing a set of movements and directions will update the Grid and Compass classes  
 	     def move_with_directions(directions)
 	     	 directions.each {|d| (d =~ /forward/) ? move : turn(d) } if directions
 	     end	
 
+         # Method to retrieve latest position along X axis
 	     def x
 	     	grid.x
 	     end
-	     
+
+
+	     # Method to retrieve latest position along Y axis
 	     def y
 	        grid.y
 	     end
 	     
+	     # Method to retrieve latest direction from the compass
 	     def facing
 	        compass.facing
 	     end   
