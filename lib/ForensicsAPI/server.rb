@@ -7,7 +7,7 @@ Bundler.setup
 
 $:.push File.dirname(__FILE__)
 
-require_relative 'ForensicsClient'
+require_relative 'forensics_api'
 require 'sinatra/base'
 require 'json'
 require 'open-uri'
@@ -35,8 +35,8 @@ module ForensicsAPI
     end	
 
     get '/search' do
-    	locator = ForensicsAPI::CatLocator.new
-    	locator.get_location(session[:directions])
+    	locator = CatLocator.new
+    	locator.move_with_directions(session[:directions])
 
     	location_url = "http://which-technical-exercise.herokuapp.com/api/#{session[:email]}/location/#{locator.x}/#{locator.y}" if locator
 
